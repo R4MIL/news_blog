@@ -26,4 +26,5 @@ class Article extends Model
     {
         return $this->morphMany(View::class, 'viewable');
     }
+
 }

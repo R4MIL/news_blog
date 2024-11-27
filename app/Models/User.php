@@ -56,4 +56,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(CommentAnswer::class);
     }
+
+    public function isAdmin()
+    {
+        $role_admin = Role::where('name', 'admin')->first()->id;
+        return UserRole::where('role_id', $role_admin)->where('user_id', $this->id)->exists();
+    }
+
 }
