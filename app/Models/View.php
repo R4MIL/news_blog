@@ -10,6 +10,9 @@ class View extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $fillable = [
+        'created_at'
+    ];
 
     public function viewable() {
         return $this->morphTo();

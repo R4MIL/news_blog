@@ -13,10 +13,7 @@ defineProps({
 
     <AuthenticatedLayout>
         <template #header>
-            <div class="flex justify-between">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">Статьи</h2>
-                <Link :href="route('articles.add')" class="text-sm text-gray-600">Добавить статью</Link>
-            </div>      
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Статьи</h2>  
         </template>
 
         <div class="py-12">
@@ -30,9 +27,6 @@ defineProps({
                                     {{ article.text }}
                                     <Link :href="route('articles.get', article)" class="text-sm underline"> Подробнее...</Link>    
                                 </p>
-                                <div class="mt-4">
-                                    <Link :href="route('articles.edit', article)" class="text-sm">Изменить</Link>
-                                </div>
                             </details>
                             <p class="text-sm p-6 text-gray-900 w-56">{{ article.created_at }}</p>
                         </div>

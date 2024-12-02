@@ -33,7 +33,7 @@ const deleteSubmit = () => {
         <template #header>
             <div class="flex justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Изменение статьи</h2>
-                <Link :href="route('articles.index')" class="text-sm text-gray-600">Назад</Link>
+                <Link :href="route('administration.index')" class="text-sm text-gray-600">Назад</Link>
             </div>      
         </template>
 

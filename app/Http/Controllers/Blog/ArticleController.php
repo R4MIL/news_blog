@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Blog;
 
+use App\Events\StoreViewsBlogArticleEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use Illuminate\Http\Client\ResponseSequence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ArticleController extends Controller
@@ -19,6 +22,19 @@ class ArticleController extends Controller
     public function get(string $id)
     {
         $article = Article::where('id', $id)->with('comments','comments.user')->first();
+        if (Auth::user()->isAdmin() == false) {
+            $article->views()->create([
+                'created_at' => now()
+            ]);
+    
+            $viewData = [
+                'article_id' => $article->id,
+                'views_quantity' => $article->views()->count()
+            ];
+
+            broadcast(new StoreViewsBlogArticleEvent($viewData));
+        }
+       
         return Inertia::render('Blog/ArticlesCardForm', [
             'article' => $article
         ]);
@@ -49,7 +65,7 @@ class ArticleController extends Controller
             'created_at' => now()  
         ]);
 
-        return redirect()->route('articles.index');
+        return redirect()->route('administration.index');
     }
 
     public function update(Request $request, string $id)
@@ -60,10 +76,13 @@ class ArticleController extends Controller
         ]);
 
         $article = Article::find($id);
-        $article->fill($request->validated());
+        $article->fill([
+            'title' => $request->title,
+            'text' => $request->text    
+        ]);
         $article->save();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('administration.index');
     }
 
     public function delete(string $id)
@@ -71,6 +90,6 @@ class ArticleController extends Controller
         $article = Article::find($id);
         $article->delete();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('administration.index');
     }
 }

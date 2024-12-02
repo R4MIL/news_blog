@@ -28,7 +28,6 @@ const addCommentSubmit = () => {
 const connectEvent = () => {
     window.Echo.channel('blog-comments')
         .listen('.comment.created', response => {
-            console.log(response);
             props.article.comments.push(response.comment);
         });
 }

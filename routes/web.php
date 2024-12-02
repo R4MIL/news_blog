@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Blog\ArticleController;
 use App\Http\Controllers\Blog\CommentController;
 use App\Http\Controllers\ProfileController;
@@ -43,10 +44,11 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware('admin')->group(function () {
+    Route::get('/administration', [AdminController::class, 'index'])->name('administration.index');
     Route::get('/articles/add', [ArticleController::class, 'add'])->name('articles.add');
     Route::post('/articles/store', [ArticleController::class, 'store'])->name('articles.store');
     Route::get('/articles/edit/{article}', [ArticleController::class, 'edit'])->name('articles.edit');
-    Route::post('/articles/update/{id}', [ArticleController::class, 'store'])->name('articles.update');
+    Route::post('/articles/update/{id}', [ArticleController::class, 'update'])->name('articles.update');
     Route::post('/articles/delete/{id}', [ArticleController::class, 'delete'])->name('articles.delete');
 });
 
