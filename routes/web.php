@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Blog\ArticleController;
 use App\Http\Controllers\Blog\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Blog\WeatherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -40,6 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
     Route::get('/articles/get/{id}', [ArticleController::class, 'get'])->name('articles.get');
     Route::post('/articles/comment/{article}', [CommentController::class, 'store'])->name('comment.store');
+
+    Route::get('/weather', [WeatherController::class, 'index'])->name('weather.index');
+    Route::get('/weather/get', [WeatherController::class, 'get'])->name('weather.get');
 });
 
 
