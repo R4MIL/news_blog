@@ -3,11 +3,13 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Blog\ArticleController;
 use App\Http\Controllers\Blog\CommentController;
+use App\Http\Controllers\Blog\CountryFlagController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Blog\WeatherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use PHPUnit\Framework\Constraint\Count;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/weather', [WeatherController::class, 'index'])->name('weather.index');
     Route::get('/weather/get', [WeatherController::class, 'get'])->name('weather.get');
+
+    Route::get('/country-flags', [CountryFlagController::class, 'index'])->name('country.flag.index');
+    Route::get('/country-flags/get', [CountryFlagController::class, 'get'])->name('country.flag.get');
 });
 
 

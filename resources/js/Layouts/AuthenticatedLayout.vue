@@ -40,6 +40,9 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('weather.index')" :active="route().current('weather.index')">
                                     Погода
                                 </NavLink>
+                                <NavLink :href="route('country.flag.index')" :active="route().current('country.flag.index')">
+                                    Флаги стран
+                                </NavLink>
                                 <NavLink :href="route('administration.index')" :active="route().current('administration.index')">
                                     Администрирование
                                 </NavLink>
