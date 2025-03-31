@@ -15,11 +15,11 @@ class ArticleController extends Controller
     public function index()
     {
         return Inertia::render('Blog/ArticlesList',[
-            'articles' => Article::orderBy('created_at','desc')->get()
+            'articles' => Article::orderBy('created_at','desc')->paginate(20)
         ]);
     }
 
-    public function get(string $id)
+    public function get(int $id)
     {
         $article = Article::where('id', $id)->with('comments','comments.user')->first();
         if (Auth::user()->isAdmin() == false) {
@@ -85,7 +85,7 @@ class ArticleController extends Controller
         return redirect()->route('administration.index');
     }
 
-    public function delete(string $id)
+    public function delete(int $id)
     {
         $article = Article::find($id);
         $article->delete();
