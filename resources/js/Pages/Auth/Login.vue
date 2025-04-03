@@ -30,9 +30,21 @@ const submit = () => {
 </script>
 
 <template>
+    <div class="flex justify-end p-2">
+        <Link
+                    :href="route('locale', 'en')"
+                    class="underline"
+                    >EN</Link>
+                    <Link
+                    :href="route('locale', 'ru')"
+                    class="underline ms-2"
+                    >RU</Link>
+    </div>
     <GuestLayout>
         <Head title="Вход" />
-
+        <div>
+            
+        </div>
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>

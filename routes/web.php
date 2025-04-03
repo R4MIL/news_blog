@@ -6,8 +6,11 @@ use App\Http\Controllers\Blog\CommentController;
 use App\Http\Controllers\Blog\CountryFlagController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Blog\WeatherController;
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 use PHPUnit\Framework\Constraint\Count;
 
@@ -30,6 +33,8 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('locale/{locale}',[LocalizationController::class, 'setLanguage'])->name('locale');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
