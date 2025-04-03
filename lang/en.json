@@ -1,0 +1,7 @@
+{
+    "user.email": "Email",
+    "user.password": "Password",
+    "user.forgot_password": "Forgot your password?",
+    "user.button_login": "Login",
+    "user.remember_me": "Remember me"
+}

@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 import { builtinModules } from 'module';
+import i18n from 'laravel-vue-i18n/vite';
 
 const allExternal = [
     ...builtinModules,
@@ -22,6 +23,7 @@ export default defineConfig({
                 },
             },
         }),
+        i18n()
     ],
     build: {
         rollupOptions: {

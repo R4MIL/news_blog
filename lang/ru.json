@@ -1,0 +1,7 @@
+{
+    "user.email": "Почта",
+    "user.password": "Пароль",
+    "user.forgot_password": "Забыли пароль?",
+    "user.button_login": "Войти",
+    "user.remember_me": "Запомнить меня"
+}
